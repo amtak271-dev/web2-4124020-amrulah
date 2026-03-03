@@ -13,3 +13,7 @@ Route::get('/perkenalan', function () {
         <p>Saya siap belajar Laravel! 🚀</p>
     ';
 });
+
+Route::get('/perkenalan', function () {
+    return 'Halo, ini halaman perkenalan!';
+});
