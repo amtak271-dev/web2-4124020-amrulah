@@ -16,4 +16,4 @@ Route::get('/perkenalan', function () {
 
 Route::get('/perkenalan', function () {
     return 'Halo, ini halaman perkenalan!';
-});
+}); 
