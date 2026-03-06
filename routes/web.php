@@ -25,4 +25,4 @@ Route::get('/lailatul', function () {
         <p>NIM: 4124007 | Prodi: Sistem Informasi</p>
         <p>Saya siap belajar Laravel! (Kolaborator)</p>
     ';
-})
+});
