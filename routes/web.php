@@ -32,9 +32,10 @@ Route::get('/lailatul', function () {
    Route Aplikasi Santri Pay
 ========================= */
 
-Route::get('/santripay/menu-santri', function () {
+Route::get('/', function () {
     return '
-        <h1>Menu Santri</h1>
+        <h1>Assalamualaikum, Akhi/Ukhti
+        Selamat Datang di Menu Santri!! </h1>
         <ul>
             <li>Login Santri</li>
             <li>Melihat Saldo Tabungan</li>
