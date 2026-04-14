@@ -55,3 +55,8 @@ Route::get('/katalog', [KatalogController::class, 'index'])
 
 Route::get('/katalog/{id}', [KatalogController::class, 'show'])
     ->name('katalog.show');
+
+Route::get('/tentang', function () {
+    return view('tentang');
+})->name('tentang.index');
+    
