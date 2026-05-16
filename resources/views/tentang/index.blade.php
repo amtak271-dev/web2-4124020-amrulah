@@ -2,6 +2,6 @@
 
 @section('content')
 
-<h1>Halaman Tentang</h1>
+<h1>Tentang SantriPay</h1>
 
 @endsection

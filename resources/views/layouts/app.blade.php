@@ -1,18 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>@yield('title')</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SantriPay</title>
+
+    @vite(['resources/css/app.css'])
 </head>
 <body>
 
-    @include('partials.navbar')
+    <header class="navbar">
+        <div class="logo">
+            <h2>SantriPay</h2>
+        </div>
 
-    <div class="p-5">
+        <nav>
+            <ul class="menu">
+                <li><a href="/">Beranda</a></li>
+                <li><a href="/tabungan">Tabungan</a></li>
+                <li><a href="/koperasi">Koperasi</a></li>
+                <li><a href="/laporan">Laporan</a></li>
+                <li><a href="/tentang">Tentang</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="content">
         @yield('content')
-    </div>
+    </main>
 
-    @include('partials.footer')
+    <footer class="footer">
+        <p>© 2026 SantriPay</p>
+    </footer>
 
 </body>
 </html>
