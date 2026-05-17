@@ -11,12 +11,12 @@ use App\Http\Controllers\SantriController;
 
 Route::get('/', [BerandaController::class, 'index']);
 
-Route::get('/tabungan', [TabunganController::class, 'index']);
+Route::resource('tabungan', TabunganController::class);
 
 Route::get('/koperasi', [KoperasiController::class, 'index']);
 
 Route::get('/laporan', [LaporanController::class, 'index']);
 
 Route::get('/tentang', [TentangController::class, 'index']);
-Route::resource('santri', SantriController::class);
 
+Route::resource('santri', SantriController::class);
