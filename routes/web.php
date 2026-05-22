@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\TabunganController;
 use App\Http\Controllers\KoperasiController;
@@ -9,14 +10,87 @@ use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\TentangController;
 use App\Http\Controllers\SantriController;
 
-Route::get('/', [BerandaController::class, 'index']);
+/*
+|--------------------------------------------------------------------------
+| HALAMAN AWAL
+|--------------------------------------------------------------------------
+*/
 
-Route::resource('tabungan', TabunganController::class);
+Route::get('/', function () {
 
-Route::get('/koperasi', [KoperasiController::class, 'index']);
+    return redirect('/login');
 
-Route::get('/laporan', [LaporanController::class, 'index']);
+});
 
-Route::get('/tentang', [TentangController::class, 'index']);
+/*
+|--------------------------------------------------------------------------
+| LOGIN
+|--------------------------------------------------------------------------
+*/
 
-Route::resource('santri', SantriController::class);
+Route::get('/login', [AuthController::class, 'showLogin'])
+    ->name('login');
+
+Route::post('/login', [AuthController::class, 'login']);
+
+Route::post('/logout', [AuthController::class, 'logout'])
+    ->middleware('auth');
+
+/*
+|--------------------------------------------------------------------------
+| HALAMAN SETELAH LOGIN
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware('auth')->group(function () {
+
+    /*
+    |--------------------------------------------------------------------------
+    | BERANDA / DASHBOARD
+    |--------------------------------------------------------------------------
+    */
+
+    Route::get('/beranda', [BerandaController::class, 'index'])
+        ->name('beranda');
+
+    /*
+    |--------------------------------------------------------------------------
+    | TABUNGAN
+    |--------------------------------------------------------------------------
+    */
+
+    Route::resource('tabungan', TabunganController::class);
+
+    /*
+    |--------------------------------------------------------------------------
+    | KOPERASI
+    |--------------------------------------------------------------------------
+    */
+
+    Route::get('/koperasi', [KoperasiController::class, 'index']);
+
+    /*
+    |--------------------------------------------------------------------------
+    | LAPORAN
+    |--------------------------------------------------------------------------
+    */
+
+    Route::get('/laporan', [LaporanController::class, 'index']);
+
+    /*
+    |--------------------------------------------------------------------------
+    | TENTANG
+    |--------------------------------------------------------------------------
+    */
+
+    Route::get('/tentang', [TentangController::class, 'index']);
+
+    /*
+    |--------------------------------------------------------------------------
+    | SANTRI
+    |--------------------------------------------------------------------------
+    */
+
+    Route::resource('santri', SantriController::class);
+
+});
