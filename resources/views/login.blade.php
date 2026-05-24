@@ -3,25 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Login SantriPay</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial, sans-serif;
+    font-family:'Poppins', sans-serif;
 }
 
 body{
-
     height:100vh;
 
     background:
     linear-gradient(
-        rgba(0,0,0,0.5),
-        rgba(0,0,0,0.5)
+        rgba(0,0,0,0.65),
+        rgba(0,0,0,0.65)
     ),
     url('/images/santri.jpg');
 
@@ -32,159 +37,277 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
+    overflow:hidden;
 }
-.title{
 
-    text-align:center;
+/* EFFECT BULAT */
 
-    margin-bottom:25px;
-
-    color:white;
-
-    font-size:35px;
-
-    font-weight:bold;
-
-    letter-spacing:2px;
+.circle1{
+    position:absolute;
+    width:250px;
+    height:250px;
+    background:rgba(34,197,94,0.3);
+    border-radius:50%;
+    top:-80px;
+    left:-80px;
+    filter:blur(20px);
 }
+
+.circle2{
+    position:absolute;
+    width:250px;
+    height:250px;
+    background:rgba(255,255,255,0.15);
+    border-radius:50%;
+    bottom:-100px;
+    right:-80px;
+    filter:blur(20px);
+}
+
 /* LOGIN BOX */
 
 .login-box{
+    position:relative;
 
-    width:400px;
+    width:420px;
 
-    padding:40px;
+    padding:45px;
 
-    background:rgba(255,255,255,0.15);
+    background:rgba(255,255,255,0.12);
 
-    backdrop-filter:blur(10px);
+    backdrop-filter:blur(12px);
 
-    -webkit-backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(12px);
 
     border:1px solid rgba(255,255,255,0.2);
 
-    border-radius:20px;
+    border-radius:25px;
 
-    box-shadow:0 8px 32px rgba(0,0,0,0.3);
+    box-shadow:
+    0 8px 32px rgba(0,0,0,0.4);
 
     color:white;
+
+    animation:fadeIn 1s ease;
 }
 
-.logo{
+/* ANIMASI */
 
-    width:90px;
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* LOGO */
+
+.logo{
+    width:100px;
+    height:100px;
+
+    object-fit:cover;
 
     display:block;
 
     margin:auto;
 
-    margin-bottom:15px;
+    margin-bottom:18px;
+
+    border-radius:50%;
+
+    background:white;
+
+    padding:8px;
+
+    border:3px solid rgba(255,255,255,0.3);
+
+    box-shadow:
+    0 0 20px rgba(34,197,94,0.5);
+
+    transition:0.3s;
 }
 
-.login-box h1{
+.logo:hover{
+    transform:scale(1.05);
 
+    box-shadow:
+    0 0 30px rgba(34,197,94,0.8);
+}
+/* TITLE */
+
+.title{
     text-align:center;
 
     color:#22c55e;
 
-    margin-bottom:10px;
+    font-size:38px;
+
+    font-weight:700;
+
+    letter-spacing:2px;
+
+    margin-bottom:8px;
+
+    text-shadow:0 0 10px rgba(34,197,94,0.5);
 }
 
 .desc{
-
     text-align:center;
 
-    margin-bottom:25px;
+    margin-bottom:30px;
 
-    color:#f1f5f9;
+    color:#e2e8f0;
+
+    font-size:14px;
+
+    line-height:22px;
 }
 
-label{
+/* LABEL */
 
+label{
     display:block;
 
     margin-bottom:8px;
 
     font-size:14px;
+
+    font-weight:500;
 }
+
+/* INPUT */
 
 select,
 input{
-
     width:100%;
 
-    padding:13px;
+    padding:14px 15px;
 
     margin-bottom:18px;
 
     border:none;
 
-    border-radius:10px;
+    border-radius:12px;
 
-    background:rgba(255,255,255,0.2);
+    background:rgba(255,255,255,0.15);
 
     color:white;
 
     outline:none;
+
+    transition:0.3s;
+}
+
+select:focus,
+input:focus{
+    background:rgba(255,255,255,0.22);
+
+    border:1px solid #22c55e;
+
+    box-shadow:0 0 10px rgba(34,197,94,0.4);
 }
 
 input::placeholder{
-
-    color:#eee;
+    color:#e2e8f0;
 }
 
 select option{
-
     color:black;
 }
 
-.forgot{
+/* FORGOT */
 
+.forgot{
     text-align:right;
 
-    margin-bottom:20px;
+    margin-bottom:22px;
 }
 
 .forgot a{
-
-    color:white;
+    color:#bbf7d0;
 
     text-decoration:none;
 
     font-size:13px;
+
+    transition:0.3s;
 }
 
-.btn-login{
+.forgot a:hover{
+    color:white;
+}
 
+/* BUTTON */
+
+.btn-login{
     width:100%;
 
-    padding:13px;
+    padding:14px;
 
     border:none;
 
-    border-radius:10px;
+    border-radius:14px;
 
-    background:#16a34a;
+    background:linear-gradient(
+        135deg,
+        #22c55e,
+        #15803d
+    );
 
     color:white;
 
     font-size:16px;
 
+    font-weight:600;
+
     cursor:pointer;
+
+    transition:0.3s;
 }
 
 .btn-login:hover{
+    transform:translateY(-2px);
 
-    background:#15803d;
+    box-shadow:
+    0 8px 20px rgba(34,197,94,0.4);
 }
 
+/* ERROR */
+
 .error{
+    background:rgba(239,68,68,0.2);
+
+    border:1px solid rgba(239,68,68,0.4);
 
     color:#fecaca;
 
-    margin-bottom:15px;
+    padding:12px;
+
+    border-radius:10px;
+
+    margin-bottom:18px;
 
     text-align:center;
+
+    font-size:14px;
+}
+
+/* FOOTER */
+
+.footer{
+    text-align:center;
+
+    margin-top:25px;
+
+    font-size:12px;
+
+    color:#cbd5e1;
 }
 
 </style>
@@ -193,14 +316,20 @@ select option{
 
 <body>
 
+<div class="circle1"></div>
+<div class="circle2"></div>
+
 <div class="login-box">
 
-    <img src="/images/logo.png" class="logo">
+    <img src="/images/logo.jpg" class="logo">
 
-    <h1>SantriPay</h1>
+    <h1 class="title">
+        SantriPay
+    </h1>
 
     <p class="desc">
-        Sistem Tabungan Santri Pondok Pesantren
+        Sistem Tabungan Santri Modern <br>
+        Pondok Pesantren
     </p>
 
     @if(session('error'))
@@ -210,14 +339,12 @@ select option{
             {{ session('error') }}
 
         </p>
-        
 
     @endif
 
     <form method="POST" action="/login">
 
         @csrf
-        <h1 class="title">SANTRI PAY</h1>
 
         <label>Pilih Peran</label>
 
@@ -269,12 +396,14 @@ select option{
             type="submit"
             class="btn-login"
         >
-
-            Login
-
+            Login Sekarang
         </button>
 
     </form>
+
+    <div class="footer">
+        © 2026 SantriPay • All Rights Reserved
+    </div>
 
 </div>
 

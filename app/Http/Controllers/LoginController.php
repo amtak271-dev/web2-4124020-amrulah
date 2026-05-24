@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AuthController extends Controller
+class LoginController extends Controller
 {
     // tampil halaman login
-    public function showLogin()
+    public function index()
     {
         return view('login');
     }
@@ -22,13 +22,9 @@ class AuthController extends Controller
 
             // cek role
             if (Auth::user()->role == 'admin') {
-
                 return redirect('/admin');
-
             } else {
-
-                return redirect('/dashboard-santri');
-
+                return redirect('/santri');
             }
 
         }

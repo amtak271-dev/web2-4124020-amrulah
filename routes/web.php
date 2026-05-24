@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BerandaController;
@@ -92,5 +93,45 @@ Route::middleware('auth')->group(function () {
     */
 
     Route::resource('santri', SantriController::class);
+
+});
+
+/*
+|--------------------------------------------------------------------------
+| ADMIN
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware('auth')->group(function () {
+
+    Route::get('/admin', function () {
+
+        if(Auth::user()->role != 'admin'){
+            abort(403);
+        }
+
+        return view('admin.dashboard');
+
+    });
+
+});
+
+/*
+|--------------------------------------------------------------------------
+| SANTRI DASHBOARD
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware('auth')->group(function () {
+
+    Route::get('/dashboard-santri', function () {
+
+        if(Auth::user()->role != 'santri'){
+            abort(403);
+        }
+
+        return view('santri.dashboard');
+
+    });
 
 });
