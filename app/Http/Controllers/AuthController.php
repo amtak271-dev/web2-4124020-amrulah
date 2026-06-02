@@ -16,16 +16,19 @@ class AuthController extends Controller
     // proses login
     public function login(Request $request)
     {
-        $credentials = $request->only('email', 'password');
+        $credentials = [
+            'email' => $request->email,
+            'password' => $request->password,
+            'role' => strtolower($request->role)
+        ];
 
         if (Auth::attempt($credentials)) {
 
-            // cek role
             if (Auth::user()->role == 'admin') {
 
                 return redirect('/admin');
 
-            } else {
+            } elseif (Auth::user()->role == 'santri') {
 
                 return redirect('/dashboard-santri');
 
@@ -33,7 +36,7 @@ class AuthController extends Controller
 
         }
 
-        return back()->with('error', 'Email atau Password salah');
+        return back()->with('error', 'Email, Password atau Role salah');
     }
 
     // logout
