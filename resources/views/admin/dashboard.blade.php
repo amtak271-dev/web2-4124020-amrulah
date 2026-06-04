@@ -6,7 +6,6 @@
     <title>Dashboard Admin</title>
 
     <style>
-
         *{
             margin:0;
             padding:0;
@@ -18,22 +17,44 @@
             background:#f5f5f5;
         }
 
-        .navbar{
-            background:#14532d;
-            padding:15px 30px;
+        /* LAYOUT */
+        .layout{
             display:flex;
-            justify-content:space-between;
-            align-items:center;
+            min-height:100vh;
+        }
+
+        /* SIDEBAR */
+        .sidebar{
+            width:250px;
+            background:#14532d;
             color:white;
+            padding:20px;
+        }
+
+        .sidebar h2{
+            margin-bottom:30px;
+        }
+
+        .menu{
+            display:flex;
+            flex-direction:column;
         }
 
         .menu a{
             color:white;
             text-decoration:none;
-            margin-left:20px;
+            padding:12px;
+            border-radius:6px;
+            margin-bottom:10px;
         }
 
-        .container{
+        .menu a:hover{
+            background:#166534;
+        }
+
+        /* CONTENT */
+        .content{
+            flex:1;
             padding:30px;
         }
 
@@ -57,10 +78,13 @@
     </style>
 
 </head>
+
 <body>
 
-    <div class="navbar">
+<div class="layout">
 
+    <!-- SIDEBAR -->
+    <div class="sidebar">
         <h2>SantriPay Admin</h2>
 
         <div class="menu">
@@ -70,10 +94,10 @@
             <a href="/koperasi">Koperasi</a>
             <a href="/laporan">Laporan</a>
         </div>
-
     </div>
 
-    <div class="container">
+    <!-- CONTENT -->
+    <div class="content">
 
         <div class="card">
             <h1>Dashboard Admin</h1>
@@ -96,6 +120,8 @@
         </form>
 
     </div>
+
+</div>
 
 </body>
 </html>
