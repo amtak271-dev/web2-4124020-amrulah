@@ -10,6 +10,7 @@ use App\Http\Controllers\KoperasiController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\TentangController;
 use App\Http\Controllers\SantriController;
+use App\Models\Santri;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,8 +69,7 @@ Route::middleware('auth')->group(function () {
     |--------------------------------------------------------------------------
     */
 
-    Route::get('/koperasi', [KoperasiController::class, 'index']);
-
+    Route::resource('koperasi', KoperasiController::class);
     /*
     |--------------------------------------------------------------------------
     | LAPORAN
@@ -110,7 +110,9 @@ Route::middleware('auth')->group(function () {
             abort(403);
         }
 
-        return view('admin.dashboard');
+        $totalSantri = Santri::count();
+
+        return view('admin.dashboard', compact('totalSantri'));
 
     });
 
