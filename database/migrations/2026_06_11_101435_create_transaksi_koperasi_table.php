@@ -11,9 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('role')->default('santri');
-        });
+        Schema::create('transaksi_koperasi', function (Blueprint $table) {
+    $table->id();
+    $table->foreignId('user_id');
+    $table->foreignId('koperasi_id');
+    $table->integer('jumlah');
+    $table->timestamps();
+});
     }
 
     /**
@@ -21,8 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('role')->default('santri');
-        });
+        Schema::dropIfExists('transaksi_koperasi');
     }
 };

@@ -20,7 +20,7 @@
             <a href="/santri">👨‍🎓 Data Santri</a>
             <a href="/tabungan">💰 Tabungan</a>
             <a href="/koperasi">🛒 Koperasi</a>
-            <a href="/laporan">📄 Laporan</a>
+           <a href="{{ url('/laporan-admin') }}">📄 Laporan</a>
         </div>
 
     </div>

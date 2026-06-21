@@ -9,24 +9,32 @@
 
 <div class="stats">
 
+    <!-- Total Santri -->
     <div class="stat-card">
-    <h4>Total Santri</h4>
-    <h2>{{ $totalSantri }}</h2>
-</div>
+        <h4>Total Santri</h4>
+        <h2>{{ $totalSantri }}</h2>
+    </div>
 
+    <!-- Total Saldo -->
     <div class="stat-card">
         <h4>Total Saldo</h4>
-        <h2>Rp 2.500.000</h2>
+        <h2>
+            Rp {{ number_format($totalSaldo, 0, ',', '.') }}
+        </h2>
     </div>
 
+    <!-- Total Transaksi -->
     <div class="stat-card">
-        <h4>Transaksi Hari Ini</h4>
-        <h2>35</h2>
+        <h4>Total Transaksi</h4>
+        <h2>{{ $totalTransaksi }}</h2>
     </div>
 
+    <!-- Setoran Hari Ini -->
     <div class="stat-card">
         <h4>Setoran Hari Ini</h4>
-        <h2>Rp 500.000</h2>
+        <h2>
+            Rp {{ number_format($setoranHariIni, 0, ',', '.') }}
+        </h2>
     </div>
 
 </div>

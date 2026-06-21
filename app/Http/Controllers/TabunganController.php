@@ -24,14 +24,20 @@ class TabunganController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'santri_id' => 'required',
+            'jumlah' => 'required|numeric',
+            'tipe' => 'required',
+        ]);
+
         Tabungan::create([
             'santri_id' => $request->santri_id,
             'jumlah' => $request->jumlah,
             'tipe' => $request->tipe,
             'keterangan' => $request->keterangan,
-            'status' => 1
         ]);
 
-        return redirect('/tabungan');
+        return redirect('/tabungan')
+                ->with('success', 'Transaksi berhasil ditambahkan');
     }
 }

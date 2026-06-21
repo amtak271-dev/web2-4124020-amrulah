@@ -7,11 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Santri extends Model
 {
     protected $fillable = [
-        'nama',
-        'nis',
-        'kelas',
-        'alamat'
-    ];
+    'user_id',
+    'nama',
+    'nis',
+    'kelas',
+    'alamat',
+    'foto'
+];
 
     // Relasi ke tabungan
     public function tabungans()

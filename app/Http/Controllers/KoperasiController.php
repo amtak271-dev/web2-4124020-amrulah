@@ -21,11 +21,22 @@ class KoperasiController extends Controller
 
     public function store(Request $request)
     {
+        $namaFile = null;
+
+        if ($request->hasFile('gambar')) {
+
+            $file = $request->file('gambar');
+
+            $namaFile = time() . '.' . $file->getClientOriginalExtension();
+
+            $file->move(public_path('images/Koperasi'), $namaFile);
+        }
+
         Koperasi::create([
             'nama_barang' => $request->nama_barang,
             'harga' => $request->harga,
             'stok' => $request->stok,
-            'gambar' => $request->gambar
+            'gambar' => $namaFile
         ]);
 
         return redirect('/koperasi')
@@ -43,11 +54,22 @@ class KoperasiController extends Controller
     {
         $koperasi = Koperasi::findOrFail($id);
 
+        $namaFile = $koperasi->gambar;
+
+        if ($request->hasFile('gambar')) {
+
+            $file = $request->file('gambar');
+
+            $namaFile = time() . '.' . $file->getClientOriginalExtension();
+
+            $file->move(public_path('images/Koperasi'), $namaFile);
+        }
+
         $koperasi->update([
             'nama_barang' => $request->nama_barang,
             'harga' => $request->harga,
             'stok' => $request->stok,
-            'gambar' => $request->gambar
+            'gambar' => $namaFile
         ]);
 
         return redirect('/koperasi')
@@ -62,5 +84,12 @@ class KoperasiController extends Controller
 
         return redirect('/koperasi')
             ->with('success', 'Barang berhasil dihapus');
+    }
+
+    public function koperasiSantri()
+    {
+        $koperasis = Koperasi::all();
+
+        return view('santri.koperasi', compact('koperasis'));
     }
 }

@@ -1,100 +1,160 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Santri</title>
+@extends('layouts.santri')
 
-    <style>
+@section('content')
 
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family:Arial;
-        }
+<!-- HEADER -->
+<div class="header dashboard-header">
 
-        body{
-            background:#f5f5f5;
-        }
+    <div>
 
-        .navbar{
-            background:#14532d;
-            padding:15px 30px;
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            color:white;
-        }
+        <h1>
+            Halo, {{ $santri->nama }} 👋
+        </h1>
 
-        .menu a{
-            color:white;
-            text-decoration:none;
-            margin-left:20px;
-        }
-
-        .container{
-            padding:30px;
-        }
-
-        .card{
-            background:white;
-            padding:20px;
-            border-radius:10px;
-            margin-bottom:20px;
-            box-shadow:0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        button{
-            background:red;
-            color:white;
-            border:none;
-            padding:10px 15px;
-            border-radius:5px;
-            cursor:pointer;
-        }
-
-    </style>
-
-</head>
-<body>
-
-    <div class="navbar">
-
-        <h2>SantriPay</h2>
-
-        <div class="menu">
-            <a href="/dashboard-santri">Dashboard</a>
-            <a href="">Saldo Saya</a>
-            <a href="">Riwayat Tabungan</a>
-            <a href="">Profil</a>
-        </div>
+        <p>
+            Selamat datang di SantriPay.
+            Kelola tabunganmu dengan mudah.
+        </p>
 
     </div>
 
-    <div class="container">
+    <div>
 
-        <div class="card">
-            <h1>Dashboard Santri</h1>
-            <p>Selamat datang Santri</p>
-        </div>
+        @if($santri->foto)
 
-        <div class="card">
-            <h3>Saldo Tabungan</h3>
-            <p>Rp 500.000</p>
-        </div>
+            <img
+                src="{{ asset('storage/' . $santri->foto) }}"
+                class="dashboard-photo"
+            >
 
-        <div class="card">
-            <h3>Transaksi Terakhir</h3>
-            <p>Setoran Rp 50.000</p>
-        </div>
+        @else
 
-        <form action="/logout" method="POST">
-            @csrf
-            <button type="submit">Logout</button>
-        </form>
+            <div class="dashboard-avatar">
+                <i class="fa-solid fa-user"></i>
+            </div>
+
+        @endif
 
     </div>
 
-</body>
-</html>
+</div>
+
+<!-- STATUS TABUNGAN -->
+<div class="status-card">
+
+    <h3>Status Tabungan</h3>
+
+    <br>
+
+    @if($statusTabungan == 'aktif')
+
+        <h2>🟢 Aktif</h2>
+        <p>{{ $pesanStatus }}</p>
+
+    @elseif($statusTabungan == 'minus')
+
+        <h2>🔴 Minus</h2>
+        <p>{{ $pesanStatus }}</p>
+
+    @else
+
+        <h2>🟡 Belum Aktif</h2>
+        <p>{{ $pesanStatus }}</p>
+
+    @endif
+
+</div>
+
+<!-- STATISTIK TABUNGAN -->
+<div class="status-card statistik-card">
+
+    <h3>
+        📊 Statistik Aktivitas Tabungan
+    </h3>
+
+    <p class="subtitle">
+        Aktivitas setor dan tarik per hari
+    </p>
+
+    <canvas id="chartAktivitas"></canvas>
+
+</div>
+
+<!-- CHART JS -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+var hari =
+JSON.parse(
+'@json($hari)'
+);
+
+var dataSetor =
+JSON.parse(
+'@json($dataSetor)'
+);
+
+var dataTarik =
+JSON.parse(
+'@json($dataTarik)'
+);
+
+var ctx =
+document.getElementById(
+    'chartAktivitas'
+);
+
+new Chart(ctx, {
+
+    type: 'bar',
+
+    data: {
+
+        labels: hari,
+
+        datasets: [
+
+            {
+                label: 'Setor',
+                data: dataSetor,
+                borderWidth: 1
+            },
+
+            {
+                label: 'Tarik',
+                data: dataTarik,
+                borderWidth: 1
+            }
+
+        ]
+
+    },
+
+    options: {
+
+        responsive: true,
+
+        plugins: {
+
+            legend: {
+                position: 'top'
+            }
+
+        },
+
+        scales: {
+
+            y: {
+                beginAtZero: true
+            }
+
+        }
+
+    }
+
+});
+
+</script>
+
+@endsection

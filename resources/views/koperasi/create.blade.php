@@ -1,4 +1,3 @@
-```php
 @extends('layouts.admin')
 
 @section('content')
@@ -10,12 +9,16 @@
 
 <div class="table-card">
 
-    <form action="{{ route('koperasi.store') }}" method="POST">
+    <form action="{{ route('koperasi.store') }}"
+          method="POST"
+          enctype="multipart/form-data">
+
         @csrf
 
         <div style="margin-bottom:15px;">
             <label>Nama Barang</label>
             <br>
+
             <input
                 type="text"
                 name="nama_barang"
@@ -27,6 +30,7 @@
         <div style="margin-bottom:15px;">
             <label>Harga</label>
             <br>
+
             <input
                 type="number"
                 name="harga"
@@ -38,6 +42,7 @@
         <div style="margin-bottom:15px;">
             <label>Stok</label>
             <br>
+
             <input
                 type="number"
                 name="stok"
@@ -47,10 +52,15 @@
         </div>
 
         <div style="margin-bottom:15px;">
-            <label>Gambar (opsional)</label>
+            <label>Gambar Barang</label>
             <br>
-          <input type="file" name="gambar">
-            
+
+            <input
+                type="file"
+                name="gambar"
+                accept="image/*"
+                style="width:100%;padding:10px;"
+            >
         </div>
 
         <button type="submit" class="btn">
@@ -66,4 +76,3 @@
 </div>
 
 @endsection
-```

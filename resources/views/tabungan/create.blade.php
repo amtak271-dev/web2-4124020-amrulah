@@ -1,16 +1,18 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
 
 <h1>Tambah Transaksi</h1>
 
-<form action="/tabungan" method="POST">
+<form action="{{ url('/tabungan') }}" method="POST">
     @csrf
 
     <div>
         <label>Santri</label><br>
 
-        <select name="santri_id">
+        <select name="santri_id" required>
+            <option value="">-- Pilih Santri --</option>
+
             @foreach($santris as $santri)
                 <option value="{{ $santri->id }}">
                     {{ $santri->nama }}
@@ -24,7 +26,7 @@
     <div>
         <label>Tipe</label><br>
 
-        <select name="tipe">
+        <select name="tipe" required>
             <option value="setor">Setor</option>
             <option value="tarik">Tarik</option>
         </select>
@@ -51,6 +53,7 @@
     <button type="submit">
         Simpan
     </button>
+
 </form>
 
 @endsection

@@ -1,41 +1,22 @@
-<?php
-
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
-
-return new class extends Migration
+public function up(): void
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
-    {
-        Schema::create('tabungans', function (Blueprint $table) {
-    $table->id();
+    Schema::create('tabungans', function (Blueprint $table) {
+        $table->id();
 
-    // Relasi ke santri
-    $table->foreignId('santri_id')
-          ->constrained('santris')
-          ->cascadeOnDelete();
+        // Relasi ke santri
+        $table->foreignId('santri_id')
+              ->constrained('santris')
+              ->cascadeOnDelete();
 
-    // Data transaksi tabungan
-    $table->integer('jumlah');
-    $table->enum('tipe', ['setor', 'tarik']);
-    $table->string('keterangan')->nullable();
+        // Jenis transaksi
+        $table->enum('tipe', ['setor', 'tarik']);
 
-    // status aktif
-    $table->boolean('status')->default(1);
+        // Nominal transaksi
+        $table->integer('jumlah');
 
-    $table->timestamps();
-});
-    }
+        // Keterangan opsional
+        $table->string('keterangan')->nullable();
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
-    {
-        Schema::dropIfExists('tabungans');
-    }
-};
+        $table->timestamps();
+    });
+}

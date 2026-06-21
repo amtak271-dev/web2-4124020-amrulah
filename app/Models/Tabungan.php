@@ -10,8 +10,7 @@ class Tabungan extends Model
         'santri_id',
         'jumlah',
         'tipe',
-        'keterangan',
-        'status'
+        'keterangan'
     ];
 
     public function santri()
