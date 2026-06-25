@@ -6,28 +6,64 @@
     <title>SantriPay Admin</title>
 
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
 
 <div class="layout">
 
-    <div class="sidebar">
+    <aside class="sidebar">
 
         <h2>SantriPay</h2>
 
         <div class="menu">
-            <a href="/admin">🏠 Dashboard</a>
-            <a href="/santri">👨‍🎓 Data Santri</a>
-            <a href="/tabungan">💰 Tabungan</a>
-            <a href="/koperasi">🛒 Koperasi</a>
-           <a href="{{ url('/laporan-admin') }}">📄 Laporan</a>
+
+            <a href="/admin">
+                <i class="fas fa-house"></i>
+                Dashboard
+            </a>
+
+            <a href="/santri">
+                <i class="fas fa-users"></i>
+                Data Santri
+            </a>
+
+            <a href="/tabungan">
+                <i class="fas fa-wallet"></i>
+                Tabungan
+            </a>
+
+            <a href="/koperasi">
+                <i class="fas fa-store"></i>
+                Koperasi
+            </a>
+
+            <a href="{{ url('/laporan-admin') }}">
+                <i class="fas fa-file-lines"></i>
+                Laporan
+            </a>
+
+            <form action="/logout" method="POST" style="margin-top:20px;">
+                @csrf
+
+                <button
+                    type="submit"
+                    class="btn"
+                    style="width:100%;background:#dc2626;color:white;">
+                    Logout
+                </button>
+
+            </form>
+
         </div>
 
-    </div>
+    </aside>
 
-    <div class="content">
+    <main class="content">
         @yield('content')
-    </div>
+    </main>
 
 </div>
 

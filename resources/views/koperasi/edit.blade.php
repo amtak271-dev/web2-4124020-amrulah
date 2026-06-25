@@ -9,47 +9,49 @@
 
 <div class="table-card">
 
-    <form action="{{ route('koperasi.update', $koperasi->id) }}" method="POST">
+    <form action="{{ route('koperasi.update',$koperasi->id) }}"
+          method="POST">
+
         @csrf
         @method('PUT')
 
-        <p>Nama Barang</p>
-        <input
-            type="text"
-            name="nama_barang"
-            value="{{ $koperasi->nama_barang }}"
-            required
-        >
+        <div class="form-group">
+            <label>Nama Barang</label>
+            <input type="text"
+                   name="nama_barang"
+                   value="{{ $koperasi->nama_barang }}"
+                   required>
+        </div>
 
-        <br><br>
+        <div class="form-group">
+            <label>Harga</label>
+            <input type="number"
+                   name="harga"
+                   value="{{ $koperasi->harga }}"
+                   required>
+        </div>
 
-        <p>Harga</p>
-        <input
-            type="number"
-            name="harga"
-            value="{{ $koperasi->harga }}"
-            required
-        >
+        <div class="form-group">
+            <label>Stok</label>
+            <input type="number"
+                   name="stok"
+                   value="{{ $koperasi->stok }}"
+                   required>
+        </div>
 
-        <br><br>
+        <div class="action">
 
-        <p>Stok</p>
-        <input
-            type="number"
-            name="stok"
-            value="{{ $koperasi->stok }}"
-            required
-        >
+            <button type="submit"
+                    class="btn btn-edit">
+                Update
+            </button>
 
-        <br><br>
+            <a href="{{ route('koperasi.index') }}"
+               class="btn btn-delete">
+                Kembali
+            </a>
 
-        <button type="submit" class="btn">
-            Update
-        </button>
-
-        <a href="{{ route('koperasi.index') }}" class="btn">
-            Kembali
-        </a>
+        </div>
 
     </form>
 

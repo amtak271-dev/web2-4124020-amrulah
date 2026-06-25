@@ -2,58 +2,82 @@
 
 @section('content')
 
-<h1>Tambah Transaksi</h1>
+<div class="header">
+    <h1>Tambah Transaksi</h1>
+    <p>Input transaksi tabungan santri</p>
+</div>
 
-<form action="{{ url('/tabungan') }}" method="POST">
-    @csrf
+<div class="table-card">
 
-    <div>
-        <label>Santri</label><br>
+    <form action="{{ url('/tabungan') }}" method="POST">
 
-        <select name="santri_id" required>
-            <option value="">-- Pilih Santri --</option>
+        @csrf
 
-            @foreach($santris as $santri)
-                <option value="{{ $santri->id }}">
-                    {{ $santri->nama }}
+        <div class="form-group">
+            <label>Santri</label>
+
+            <select name="santri_id" required>
+
+                <option value="">
+                    -- Pilih Santri --
                 </option>
-            @endforeach
-        </select>
-    </div>
 
-    <br>
+                @foreach($santris as $santri)
 
-    <div>
-        <label>Tipe</label><br>
+                    <option value="{{ $santri->id }}">
+                        {{ $santri->nama }}
+                    </option>
 
-        <select name="tipe" required>
-            <option value="setor">Setor</option>
-            <option value="tarik">Tarik</option>
-        </select>
-    </div>
+                @endforeach
 
-    <br>
+            </select>
+        </div>
 
-    <div>
-        <label>Jumlah</label><br>
+        <div class="form-group">
+            <label>Tipe Transaksi</label>
 
-        <input type="number" name="jumlah" required>
-    </div>
+            <select name="tipe" required>
+                <option value="setor">Setor</option>
+                <option value="tarik">Tarik</option>
+            </select>
+        </div>
 
-    <br>
+        <div class="form-group">
+            <label>Jumlah</label>
 
-    <div>
-        <label>Keterangan</label><br>
+            <input
+                type="number"
+                name="jumlah"
+                required
+            >
+        </div>
 
-        <input type="text" name="keterangan">
-    </div>
+        <div class="form-group">
+            <label>Keterangan</label>
 
-    <br>
+            <input
+                type="text"
+                name="keterangan"
+            >
+        </div>
 
-    <button type="submit">
-        Simpan
-    </button>
+        <div class="action">
 
-</form>
+            <button
+                type="submit"
+                class="btn btn-gold">
+                Simpan
+            </button>
+
+            <a href="{{ url('/tabungan') }}"
+               class="btn btn-delete">
+                Kembali
+            </a>
+
+        </div>
+
+    </form>
+
+</div>
 
 @endsection

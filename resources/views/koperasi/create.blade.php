@@ -15,61 +15,44 @@
 
         @csrf
 
-        <div style="margin-bottom:15px;">
+        <div class="form-group">
             <label>Nama Barang</label>
-            <br>
-
-            <input
-                type="text"
-                name="nama_barang"
-                required
-                style="width:100%;padding:10px;"
-            >
+            <input type="text"
+                   name="nama_barang"
+                   required>
         </div>
 
-        <div style="margin-bottom:15px;">
+        <div class="form-group">
             <label>Harga</label>
-            <br>
-
-            <input
-                type="number"
-                name="harga"
-                required
-                style="width:100%;padding:10px;"
-            >
+            <input type="number"
+                   name="harga"
+                   required>
         </div>
 
-        <div style="margin-bottom:15px;">
+        <div class="form-group">
             <label>Stok</label>
-            <br>
-
-            <input
-                type="number"
-                name="stok"
-                required
-                style="width:100%;padding:10px;"
-            >
+            <input type="number"
+                   name="stok"
+                   required>
         </div>
 
-        <div style="margin-bottom:15px;">
+        <div class="form-group">
             <label>Gambar Barang</label>
-            <br>
-
-            <input
-                type="file"
-                name="gambar"
-                accept="image/*"
-                style="width:100%;padding:10px;"
-            >
+            <input type="file"
+                   name="gambar"
+                   accept="image/*">
         </div>
 
-        <button type="submit" class="btn">
-            Simpan
-        </button>
+        <div class="action">
+            <button type="submit" class="btn btn-gold">
+                Simpan
+            </button>
 
-        <a href="{{ route('koperasi.index') }}" class="btn">
-            Kembali
-        </a>
+            <a href="{{ route('koperasi.index') }}"
+               class="btn btn-delete">
+                Kembali
+            </a>
+        </div>
 
     </form>
 

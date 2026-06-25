@@ -9,23 +9,23 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('santris', function (Blueprint $table) {
-
-            $table->foreignId('user_id')
-                  ->nullable()
-                  ->after('id')
-                  ->constrained('users')
-                  ->cascadeOnDelete();
-
+            if (!Schema::hasColumn('santris', 'user_id')) {
+                $table->foreignId('user_id')
+                      ->nullable()
+                      ->after('id')
+                      ->constrained('users')
+                      ->cascadeOnDelete();
+            }
         });
     }
 
     public function down(): void
     {
         Schema::table('santris', function (Blueprint $table) {
-
-            $table->dropForeign(['user_id']);
-            $table->dropColumn('user_id');
-
+            if (Schema::hasColumn('santris', 'user_id')) {
+                $table->dropForeign(['user_id']);
+                $table->dropColumn('user_id');
+            }
         });
     }
 };

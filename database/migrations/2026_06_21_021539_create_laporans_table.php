@@ -11,13 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-       
         Schema::create('laporans', function (Blueprint $table) {
 
             $table->id();
-            $table->foreignId('santri_id');
+
+            $table->foreignId('santri_id')
+                  ->constrained('santris')
+                  ->cascadeOnDelete();
+
             $table->string('judul');
+
             $table->text('isi');
+
+            $table->text('balasan')->nullable();
+
             $table->enum('status', [
                 'baru',
                 'diproses',
@@ -25,10 +32,7 @@ return new class extends Migration
             ])->default('baru');
 
             $table->timestamps();
-
-});
-
-
+        });
     }
 
     /**

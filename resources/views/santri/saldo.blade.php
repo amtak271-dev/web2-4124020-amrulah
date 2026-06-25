@@ -37,36 +37,7 @@
 
 </div>
 
-<div class="stat-card" style="width:100%; margin-top:20px;">
-
-    <h3>Transaksi Terakhir</h3>
-
-    @if($transaksiTerakhir)
-
-        <br>
-
-        <p>
-            <strong>
-                {{ ucfirst($transaksiTerakhir->tipe) }}
-            </strong>
-        </p>
-
-        <p>
-            Rp {{ number_format($transaksiTerakhir->jumlah,0,',','.') }}
-        </p>
-
-        <small>
-            {{ $transaksiTerakhir->created_at->format('d M Y') }}
-        </small>
-
-    @else
-
-        <p>Belum ada transaksi</p>
-
-    @endif
-
-</div>
-
+{{-- RIWAYAT 3 TRANSAKSI TERAKHIR --}}
 <div class="stat-card" style="width:100%; margin-top:20px;">
 
     <h3>3 Riwayat Transaksi Terakhir</h3>

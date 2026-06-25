@@ -2,117 +2,143 @@
 
 @section('content')
 
-<h1>Daftar Laporan Santri</h1>
-
-<br>
+<div class="header">
+    <h1>Data Laporan</h1>
+    <p>Laporan dan pengaduan dari santri</p>
+</div>
 
 @if($laporans->count())
 
-<table border="1" cellpadding="10" cellspacing="0" width="100%">
+<div class="table-card">
 
-    <tr>
-        <th>No</th>
-        <th>Santri</th>
-        <th>Judul</th>
-        <th>Isi</th>
-        <th>Status</th>
-        <th>Balasan Admin</th>
-        <th>Aksi</th>
-    </tr>
+    <table>
 
-    @foreach($laporans as $laporan)
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Santri</th>
+                <th>Judul</th>
+                <th>Isi Laporan</th>
+                <th>Status</th>
+                <th>Balasan Admin</th>
+                <th width="300">Aksi</th>
+            </tr>
+        </thead>
 
-    <tr>
+        <tbody>
 
-        <td>
-            {{ $loop->iteration }}
-        </td>
+            @foreach($laporans as $laporan)
 
-        <td>
-            {{ $laporan->santri->nama ?? '-' }}
-        </td>
+            <tr>
 
-        <td>
-            {{ $laporan->judul }}
-        </td>
+                <td>{{ $loop->iteration }}</td>
 
-        <td>
-            {{ $laporan->isi }}
-        </td>
+                <td>
+                    <strong>
+                        {{ $laporan->santri->nama ?? '-' }}
+                    </strong>
+                </td>
 
-        <td>
+                <td>
+                    {{ $laporan->judul }}
+                </td>
 
-            @if($laporan->status == 'baru')
-                🟡 Baru
-            @elseif($laporan->status == 'diproses')
-                🔵 Diproses
-            @else
-                🟢 Selesai
-            @endif
+                <td>
+                    {{ $laporan->isi }}
+                </td>
 
-        </td>
+                <td>
 
-        <td>
-            {{ $laporan->balasan ?? '-' }}
-        </td>
+                    @if($laporan->status == 'baru')
 
-        <td>
+                        <span class="badge-baru">
+                            Baru
+                        </span>
 
-            <form
-                action="{{ url('/laporan/'.$laporan->id.'/update') }}"
-                method="POST"
-            >
+                    @elseif($laporan->status == 'diproses')
 
-                @csrf
+                        <span class="badge-proses">
+                            Diproses
+                        </span>
 
-                <select name="status">
+                    @else
 
-                    <option value="baru">
-                        Baru
-                    </option>
+                        <span class="badge-selesai">
+                            Selesai
+                        </span>
 
-                    <option value="diproses">
-                        Diproses
-                    </option>
+                    @endif
 
-                    <option value="selesai">
-                        Selesai
-                    </option>
+                </td>
 
-                </select>
+                <td>
+                    {{ $laporan->balasan ?? '-' }}
+                </td>
 
-                <br><br>
+                <td>
 
-                <textarea
-                    name="balasan"
-                    rows="3"
-                    cols="25"
-                    placeholder="Tulis balasan admin..."
-                >{{ $laporan->balasan }}</textarea>
+                    <form
+                        action="{{ url('/laporan/'.$laporan->id.'/update') }}"
+                        method="POST"
+                    >
 
-                <br><br>
+                        @csrf
 
-                <button type="submit">
+                        <select name="status">
 
-                    Simpan
+                            <option value="baru"
+                                {{ $laporan->status == 'baru' ? 'selected' : '' }}>
+                                Baru
+                            </option>
 
-                </button>
+                            <option value="diproses"
+                                {{ $laporan->status == 'diproses' ? 'selected' : '' }}>
+                                Diproses
+                            </option>
 
-            </form>
+                            <option value="selesai"
+                                {{ $laporan->status == 'selesai' ? 'selected' : '' }}>
+                                Selesai
+                            </option>
 
-        </td>
+                        </select>
 
-    </tr>
+                        <br><br>
 
-    @endforeach
+                        <textarea
+                            name="balasan"
+                            rows="3"
+                            placeholder="Tulis balasan admin..."
+                        >{{ $laporan->balasan }}</textarea>
 
-</table>
+                        <br><br>
+
+                        <button
+                            type="submit"
+                            class="btn btn-gold">
+                            Simpan
+                        </button>
+
+                    </form>
+
+                </td>
+
+            </tr>
+
+            @endforeach
+
+        </tbody>
+
+    </table>
+
+</div>
 
 @else
 
-<p>Belum ada laporan masuk.</p>
+<div class="table-card">
+    <p>Belum ada laporan masuk.</p>
+</div>
 
 @endif
 
 @endsection
-

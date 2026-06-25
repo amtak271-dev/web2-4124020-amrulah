@@ -3,406 +3,327 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Login SantriPay</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <style>
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:'Poppins', sans-serif;
+    font-family:'Poppins',sans-serif;
 }
 
 body{
-    height:100vh;
-
+    min-height:100vh;
     background:
-    linear-gradient(
-        rgba(0,0,0,0.65),
-        rgba(0,0,0,0.65)
-    ),
-    url('/images/santri.jpg');
-
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
-
+    linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.65)),
+    url('/images/santri.jpg') center/cover no-repeat;
     display:flex;
     justify-content:center;
     align-items:center;
-    overflow:hidden;
+    padding:20px;
 }
 
-/* EFFECT BULAT */
-
-.circle1{
-    position:absolute;
-    width:250px;
-    height:250px;
-    background:rgba(34,197,94,0.3);
-    border-radius:50%;
-    top:-80px;
-    left:-80px;
-    filter:blur(20px);
+.container{
+    width:1200px;
+    max-width:95%;
+    display:grid;
+    grid-template-columns:450px 1fr;
+    gap:50px;
+    align-items:center;
 }
-
-.circle2{
-    position:absolute;
-    width:250px;
-    height:250px;
-    background:rgba(255,255,255,0.15);
-    border-radius:50%;
-    bottom:-100px;
-    right:-80px;
-    filter:blur(20px);
-}
-
-/* LOGIN BOX */
 
 .login-box{
-    position:relative;
-
-    width:420px;
-
-    padding:45px;
-
-    background:rgba(255,255,255,0.12);
-
-    backdrop-filter:blur(12px);
-
-    -webkit-backdrop-filter:blur(12px);
-
-    border:1px solid rgba(255,255,255,0.2);
-
-    border-radius:25px;
-
-    box-shadow:
-    0 8px 32px rgba(0,0,0,0.4);
-
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:30px;
+    padding:35px;
     color:white;
+    box-shadow:0 20px 40px rgba(0,0,0,.35);
 
-    animation:fadeIn 1s ease;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
 }
-
-/* ANIMASI */
-
-@keyframes fadeIn{
-    from{
-        opacity:0;
-        transform:translateY(30px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-/* LOGO */
 
 .logo{
     width:100px;
     height:100px;
-
-    object-fit:cover;
-
-    display:block;
-
-    margin:auto;
-
-    margin-bottom:18px;
-
     border-radius:50%;
-
     background:white;
-
-    padding:8px;
-
-    border:3px solid rgba(255,255,255,0.3);
-
-    box-shadow:
-    0 0 20px rgba(34,197,94,0.5);
-
-    transition:0.3s;
+    padding:10px;
+    margin:0 auto 15px;
+    display:block;
+    object-fit:cover;
 }
-
-.logo:hover{
-    transform:scale(1.05);
-
-    box-shadow:
-    0 0 30px rgba(34,197,94,0.8);
-}
-/* TITLE */
 
 .title{
     text-align:center;
-
-    color:#22c55e;
-
     font-size:38px;
-
     font-weight:700;
-
-    letter-spacing:2px;
-
-    margin-bottom:8px;
-
-    text-shadow:0 0 10px rgba(34,197,94,0.5);
+    color:#22c55e;
 }
 
 .desc{
     text-align:center;
-
+    color:#ddd;
+    margin-top:8px;
     margin-bottom:30px;
-
-    color:#e2e8f0;
-
-    font-size:14px;
-
-    line-height:22px;
 }
 
-/* LABEL */
-
-label{
-    display:block;
-
-    margin-bottom:8px;
-
-    font-size:14px;
-
-    font-weight:500;
-}
-
-/* INPUT */
-
-select,
-input{
-    width:100%;
-
-    padding:14px 15px;
-
+.input-group{
+    position:relative;
     margin-bottom:18px;
-
-    border:none;
-
-    border-radius:12px;
-
-    background:rgba(255,255,255,0.15);
-
-    color:white;
-
-    outline:none;
-
-    transition:0.3s;
 }
 
-select:focus,
-input:focus{
-    background:rgba(255,255,255,0.22);
+.input-group i{
+    position:absolute;
+    left:16px;
+    top:17px;
+    color:#bbf7d0;
+}
 
-    border:1px solid #22c55e;
-
-    box-shadow:0 0 10px rgba(34,197,94,0.4);
+input,
+select{
+    width:100%;
+    padding:15px 15px 15px 48px;
+    border:none;
+    border-radius:14px;
+    background:rgba(255,255,255,.12);
+    color:white;
+    font-size:14px;
+    border:1px solid rgba(255,255,255,.1);
 }
 
 input::placeholder{
-    color:#e2e8f0;
+    color:#ddd;
 }
 
-select option{
+option{
     color:black;
 }
 
-/* FORGOT */
-
-.forgot{
-    text-align:right;
-
-    margin-bottom:22px;
+input:focus,
+select:focus{
+    outline:none;
+    border-color:#22c55e;
+    box-shadow:0 0 15px rgba(34,197,94,.3);
 }
 
-.forgot a{
-    color:#bbf7d0;
-
-    text-decoration:none;
-
-    font-size:13px;
-
-    transition:0.3s;
-}
-
-.forgot a:hover{
-    color:white;
-}
-
-/* BUTTON */
-
-.btn-login{
+button{
     width:100%;
-
-    padding:14px;
-
+    padding:15px;
     border:none;
-
     border-radius:14px;
-
-    background:linear-gradient(
-        135deg,
-        #22c55e,
-        #15803d
-    );
-
+    background:linear-gradient(135deg,#22c55e,#15803d);
     color:white;
-
     font-size:16px;
-
     font-weight:600;
-
     cursor:pointer;
-
-    transition:0.3s;
+    transition:.3s;
 }
 
-.btn-login:hover{
+button:hover{
     transform:translateY(-2px);
-
-    box-shadow:
-    0 8px 20px rgba(34,197,94,0.4);
+    box-shadow:0 10px 20px rgba(34,197,94,.35);
 }
-
-/* ERROR */
-
-.error{
-    background:rgba(239,68,68,0.2);
-
-    border:1px solid rgba(239,68,68,0.4);
-
-    color:#fecaca;
-
-    padding:12px;
-
-    border-radius:10px;
-
-    margin-bottom:18px;
-
-    text-align:center;
-
-    font-size:14px;
-}
-
-/* FOOTER */
 
 .footer{
     text-align:center;
+    margin-top:20px;
+    color:#ddd;
+    font-size:13px;
+}
 
-    margin-top:25px;
+.right{
+    color:white;
+}
 
-    font-size:12px;
+.right h4{
+    color:#86efac;
+    font-size:18px;
+    margin-bottom:10px;
+}
 
-    color:#cbd5e1;
+.right h1{
+    font-size:42px;
+    line-height:1.3;
+    margin-bottom:20px;
+    font-weight:700;
+}
+
+.right p{
+    color:#f1f5f9;
+    line-height:1.9;
+    margin-bottom:20px;
+    font-size:16px;
+}
+
+.feature{
+    display:flex;
+    gap:15px;
+    margin-top:20px;
+}
+
+.icon{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    background:rgba(34,197,94,.15);
+    color:#22c55e;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    flex-shrink:0;
+}
+
+.feature h3{
+    margin-bottom:5px;
+}
+
+.quote{
+    margin-top:30px;
+    padding:18px;
+    border-left:4px solid #22c55e;
+    background:rgba(255,255,255,.08);
+    border-radius:12px;
+    font-style:italic;
+}
+
+@media(max-width:900px){
+
+    .container{
+        grid-template-columns:1fr;
+    }
+
+    .right{
+        display:none;
+    }
+
 }
 
 </style>
-
 </head>
-
 <body>
 
-<div class="circle1"></div>
-<div class="circle2"></div>
+<div class="container">
 
-<div class="login-box">
+    <div class="login-box">
 
-    <img src="/images/logo.jpg" class="logo">
+        <img src="/images/logo.jpg" class="logo">
 
-    <h1 class="title">
-        SantriPay
-    </h1>
+        <h2 class="title">SantriPay</h2>
 
-    <p class="desc">
-        Sistem Tabungan Santri Modern <br>
-        Pondok Pesantren
-    </p>
-
-    @if(session('error'))
-
-        <p class="error">
-
-            {{ session('error') }}
-
+        <p class="desc">
+            Sistem Tabungan Santri Berbasis Digital
         </p>
 
-    @endif
+        <form method="POST" action="/login">
+            @csrf
 
-    <form method="POST" action="/login">
+            <div class="input-group">
+                <i class="fa-solid fa-user"></i>
+                <select name="role">
+                    <option value="">-- Pilih Peran --</option>
+                    <option value="admin">Admin</option>
+                    <option value="santri">Santri</option>
+                </select>
+            </div>
 
-        @csrf
+            <div class="input-group">
+                <i class="fa-solid fa-envelope"></i>
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Masukkan Email"
+                    required>
+            </div>
 
-        <label>Pilih Peran</label>
+            <div class="input-group">
+                <i class="fa-solid fa-lock"></i>
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Masukkan Password"
+                    required>
+            </div>
 
-        <select name="role">
+            <button type="submit">
+                <i class="fa-solid fa-right-to-bracket"></i>
+                Login Sekarang
+            </button>
 
-            <option>
-                -- Pilih Peran --
-            </option>
+        </form>
 
-            <option>
-                Admin
-            </option>
-
-            <option>
-                Santri
-            </option>
-
-            <option>
-                Wali Santri
-            </option>
-
-        </select>
-
-        <label>Email</label>
-
-        <input
-            type="email"
-            name="email"
-            placeholder="Masukkan email"
-        >
-
-        <label>Password</label>
-
-        <input
-            type="password"
-            name="password"
-            placeholder="Masukkan password"
-        >
-
-        <div class="forgot">
-
-            <a href="#">
-                Lupa password?
-            </a>
-
+        <div class="footer">
+            © 2026 SantriPay • All Rights Reserved
         </div>
 
-        <button
-            type="submit"
-            class="btn-login"
-        >
-            Login Sekarang
-        </button>
+    </div>
 
-    </form>
+    <div class="right">
 
-    <div class="footer">
-        © 2026 SantriPay • All Rights Reserved
+        <h4>Selamat Datang di</h4>
+
+        <h1>
+            SantriPay<br>
+            Solusi Tabungan Santri Masa Kini
+        </h1>
+
+        <p>
+            SantriPay membantu pengelolaan tabungan santri menjadi lebih aman,
+            cepat, transparan, dan terintegrasi. Seluruh transaksi setoran,
+            penarikan, dan laporan keuangan dapat dilakukan dalam satu sistem.
+        </p>
+
+        <p>
+            Dengan teknologi digital, pengurus pondok pesantren dan wali santri
+            dapat memantau perkembangan tabungan kapan saja dan di mana saja.
+        </p>
+
+        <div class="feature">
+            <div class="icon">
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <div>
+                <h3>Aman</h3>
+                <p>Data transaksi tersimpan secara otomatis dan terstruktur.</p>
+            </div>
+        </div>
+
+        <div class="feature">
+            <div class="icon">
+                <i class="fa-solid fa-chart-line"></i>
+            </div>
+            <div>
+                <h3>Transparan</h3>
+                <p>Riwayat tabungan dapat dipantau dengan mudah setiap saat.</p>
+            </div>
+        </div>
+
+        <div class="feature">
+            <div class="icon">
+                <i class="fa-solid fa-bolt"></i>
+            </div>
+            <div>
+                <h3>Mudah Digunakan</h3>
+                <p>Tampilan sederhana dan modern untuk semua pengguna.</p>
+            </div>
+        </div>
+
+        <div class="quote">
+            "Mengelola Tabungan Santri dengan Teknologi, Transparansi, dan Kepercayaan."
+        </div>
+
     </div>
 
 </div>

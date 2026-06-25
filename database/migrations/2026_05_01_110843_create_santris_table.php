@@ -11,12 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-            Schema::create('santris', function (Blueprint $table) {
+        Schema::create('santris', function (Blueprint $table) {
             $table->id();
+
+            // Relasi ke tabel users
+            $table->foreignId('user_id')
+                  ->constrained('users')
+                  ->onDelete('cascade');
+
             $table->string('nama');
-            $table->string('nis');
+            $table->string('nis')->unique();
             $table->string('kelas');
             $table->text('alamat');
+
             $table->timestamps();
         });
     }

@@ -2,29 +2,73 @@
 
 @section('content')
 
-<h1>Data Tabungan</h1>
+<div class="header">
+    <h1>Data Tabungan</h1>
+    <p>Riwayat transaksi tabungan santri</p>
+</div>
 
-<a href="/tabungan/create">Tambah Transaksi</a>
+<div style="margin-bottom:25px;">
+    <a href="{{ url('/tabungan/create') }}" class="btn btn-gold">
+        + Tambah Transaksi
+    </a>
+</div>
 
-<table border="1" cellpadding="10">
-    <tr>
-        <th>No</th>
-        <th>Nama Santri</th>
-        <th>Tipe</th>
-        <th>Jumlah</th>
-        <th>Keterangan</th>
-    </tr>
+<div class="table-card">
 
-    @foreach($tabungans as $tabungan)
-    <tr>
-        <td>{{ $loop->iteration }}</td>
-        <td>{{ $tabungan->santri->nama }}</td>
-        <td>{{ $tabungan->tipe }}</td>
-        <td>Rp {{ number_format($tabungan->jumlah) }}</td>
-        <td>{{ $tabungan->keterangan }}</td>
-    </tr>
-    @endforeach
+    <table>
 
-</table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Nama Santri</th>
+                <th>Tipe</th>
+                <th>Jumlah</th>
+                <th>Keterangan</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @foreach($tabungans as $tabungan)
+
+            <tr>
+
+                <td>{{ $loop->iteration }}</td>
+
+                <td>
+                    <strong>{{ $tabungan->santri->nama }}</strong>
+                </td>
+
+                <td>
+
+                    @if($tabungan->tipe == 'setor')
+                        <span class="badge-setor">
+                            Setor
+                        </span>
+                    @else
+                        <span class="badge-tarik">
+                            Tarik
+                        </span>
+                    @endif
+
+                </td>
+
+                <td>
+                    Rp {{ number_format($tabungan->jumlah,0,',','.') }}
+                </td>
+
+                <td>
+                    {{ $tabungan->keterangan }}
+                </td>
+
+            </tr>
+
+            @endforeach
+
+        </tbody>
+
+    </table>
+
+</div>
 
 @endsection

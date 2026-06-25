@@ -26,14 +26,17 @@ class TabunganController extends Controller
     {
         $request->validate([
             'santri_id' => 'required',
-            'jumlah' => 'required|numeric',
             'tipe' => 'required',
+            'jumlah' => 'required',
         ]);
 
         Tabungan::create([
             'santri_id' => $request->santri_id,
-            'jumlah' => $request->jumlah,
             'tipe' => $request->tipe,
+
+            // 🔥 FIX PENTING: hapus titik ribuan
+            'jumlah' => (int) str_replace('.', '', $request->jumlah),
+
             'keterangan' => $request->keterangan,
         ]);
 

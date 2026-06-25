@@ -7,11 +7,11 @@
     <p>Daftar Barang Koperasi</p>
 </div>
 
-<a href="{{ route('koperasi.create') }}" class="btn">
-    + Tambah Barang
-</a>
-
-<br><br>
+<div style="margin-bottom:25px;">
+    <a href="{{ route('koperasi.create') }}" class="btn btn-gold">
+        + Tambah Barang
+    </a>
+</div>
 
 <div class="product-grid">
 
@@ -23,46 +23,51 @@
             src="{{ asset('images/Koperasi/' . $koperasi->gambar) }}"
             alt="{{ $koperasi->nama_barang }}"
         >
-        
 
-        <h3>{{ $koperasi->nama_barang }}</h3>
+        <div class="product-body">
 
-        <p>
-            Harga :
-            Rp {{ number_format($koperasi->harga,0,',','.') }}
-        </p>
+            <h3>{{ $koperasi->nama_barang }}</h3>
 
-        <p>
-            Stok :
-            {{ $koperasi->stok }}
-        </p>
+            <div class="product-info">
+                <span>Harga</span>
+                <strong>
+                    Rp {{ number_format($koperasi->harga,0,',','.') }}
+                </strong>
+            </div>
 
-        <div class="action">
+            <div class="product-info">
+                <span>Stok</span>
+                <strong>{{ $koperasi->stok }}</strong>
+            </div>
 
-            <a
-                href="{{ route('koperasi.edit',$koperasi->id) }}"
-                class="btn"
-            >
-                Edit
-            </a>
+            <div class="action">
 
-            <form
-                action="{{ route('koperasi.destroy',$koperasi->id) }}"
-                method="POST"
-                style="display:inline;"
-            >
-                @csrf
-                @method('DELETE')
-
-                <button
-                    type="submit"
-                    class="btn"
-                    onclick="return confirm('Hapus barang?')"
+                <a
+                    href="{{ route('koperasi.edit',$koperasi->id) }}"
+                    class="btn btn-edit"
                 >
-                    Hapus
-                </button>
+                    Edit
+                </a>
 
-            </form>
+                <form
+                    action="{{ route('koperasi.destroy',$koperasi->id) }}"
+                    method="POST"
+                    style="display:inline;"
+                >
+                    @csrf
+                    @method('DELETE')
+
+                    <button
+                        type="submit"
+                        class="btn btn-delete"
+                        onclick="return confirm('Hapus barang ini?')"
+                    >
+                        Hapus
+                    </button>
+
+                </form>
+
+            </div>
 
         </div>
 

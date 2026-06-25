@@ -1,22 +1,32 @@
-public function up(): void
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
 {
-    Schema::create('tabungans', function (Blueprint $table) {
-        $table->id();
+    public function up(): void
+    {
+        Schema::create('tabungans', function (Blueprint $table) {
+            $table->id();
 
-        // Relasi ke santri
-        $table->foreignId('santri_id')
-              ->constrained('santris')
-              ->cascadeOnDelete();
+            $table->foreignId('santri_id')
+                  ->constrained('santris')
+                  ->cascadeOnDelete();
 
-        // Jenis transaksi
-        $table->enum('tipe', ['setor', 'tarik']);
+            $table->enum('tipe', ['setor', 'tarik']);
 
-        // Nominal transaksi
-        $table->integer('jumlah');
+            $table->integer('jumlah');
 
-        // Keterangan opsional
-        $table->string('keterangan')->nullable();
+            $table->string('keterangan')->nullable();
 
-        $table->timestamps();
-    });
-}
+            $table->timestamps();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('tabungans');
+    }
+};
