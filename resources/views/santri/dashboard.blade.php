@@ -8,7 +8,7 @@
     <div>
 
         <h1>
-            Halo, {{ $santri->nama }} 👋
+            Halo, {{ $santri->nama }} 
         </h1>
 
         <p>
@@ -65,22 +65,69 @@
 
 </div>
 
-<!-- STATISTIK TABUNGAN -->
-<div class="status-card statistik-card">
+<!-- GRID -->
+<div class="dashboard-grid">
 
-    <h3>
-        📊 Statistik Aktivitas Tabungan
-    </h3>
+    <!-- STATISTIK -->
+    <div class="status-card statistik-card">
 
-    <p class="subtitle">
-        Aktivitas setor dan tarik per hari
-    </p>
+        <h3>
+            📊 Statistik Aktivitas Tabungan
+        </h3>
 
-    <canvas id="chartAktivitas"></canvas>
+        <p class="subtitle">
+            Aktivitas setor dan tarik per hari
+        </p>
+
+        <canvas id="chartAktivitas"></canvas>
+
+    </div>
+
+    <!-- PENGUMUMAN -->
+    <div class="status-card">
+
+        <h3>📢 Pengumuman</h3>
+
+        <div class="pengumuman-item">
+
+            <h4>💰 Jadwal Layanan Tabungan</h4>
+
+            <p>
+                Senin - Jumat<br>
+                08.00 - 15.00 WIB
+            </p>
+
+        </div>
+
+        <div class="pengumuman-item">
+
+            <h4>🛒 Jam Operasional Koperasi</h4>
+
+            <p>
+                Setiap Hari<br>
+                07.00 - 17.00 WIB
+            </p>
+
+        </div>
+
+        <div class="pengumuman-item">
+
+            <h4>📌 Informasi Admin</h4>
+
+            <p>
+                Jika mengalami kendala pada tabungan,
+                koperasi, atau akun SantriPay,
+                silakan menghubungi admin pesantren.
+            </p>
+
+        </div>
+
+    </div>
 
 </div>
 
 <!-- CHART JS -->
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
@@ -118,13 +165,15 @@ new Chart(ctx, {
             {
                 label: 'Setor',
                 data: dataSetor,
-                borderWidth: 1
+                borderWidth: 1,
+                backgroundColor:'#d4af37'
             },
 
             {
                 label: 'Tarik',
                 data: dataTarik,
-                borderWidth: 1
+                borderWidth: 1,
+                backgroundColor:'#1e293b'
             }
 
         ]

@@ -7,63 +7,105 @@
     <p>Pilih barang yang ingin dibeli</p>
 </div>
 
+@if(session('success'))
+<div class="alert-success">
+    {{ session('success') }}
+</div>
+@endif
+
 <div class="product-grid">
 
-    @foreach($koperasis as $koperasi)
+@foreach($koperasis as $koperasi)
 
-    <div class="product-card">
+<div class="product-card">
 
-        <img
-            src="{{ asset('images/Koperasi/' . $koperasi->gambar) }}"
-            alt="{{ $koperasi->nama_barang }}"
+    <img src="{{ asset('images/Koperasi/'.$koperasi->gambar) }}">
+
+    <h3>{{ $koperasi->nama_barang }}</h3>
+
+    <p>Harga : Rp {{ number_format($koperasi->harga) }}</p>
+
+    <p>Stok : {{ $koperasi->stok }}</p>
+
+    @if($koperasi->stok>0)
+
+    <form action="{{ route('pesanan.store') }}" method="POST">
+
+        @csrf
+
+        <input
+            type="hidden"
+            name="koperasi_id"
+            value="{{ $koperasi->id }}"
         >
 
-        <h3>{{ $koperasi->nama_barang }}</h3>
+        <label>Jumlah</label>
 
-        <p>
-            Harga :
-            Rp {{ number_format($koperasi->harga,0,',','.') }}
-        </p>
+        <input
+            type="number"
+            name="jumlah"
+            value="1"
+            min="1"
+            max="{{ $koperasi->stok }}"
+        >
 
-        <p>
-            Stok :
-            {{ $koperasi->stok }}
-        </p>
+        <button class="btn">
+            Pesan
+        </button>
 
-        <form action="{{ route('pesanan.store') }}" method="POST">
+    </form>
 
-            @csrf
+    @else
 
-            <input
-                type="hidden"
-                name="koperasi_id"
-                value="{{ $koperasi->id }}"
-            >
+    <button class="btn" disabled>
+        Stok Habis
+    </button>
 
-            <label>Jumlah</label>
+    @endif
 
-            <br>
+</div>
 
-            <input
-                type="number"
-                name="jumlah"
-                value="1"
-                min="1"
-                max="{{ $koperasi->stok }}"
-                required
-            >
+@endforeach
 
-            <br><br>
+</div>
 
-            <button type="submit" class="btn">
-                Pesan
-            </button>
+<br><br>
 
-        </form>
+<div class="table-card">
 
-    </div>
+<h2>Riwayat Pesanan</h2>
 
-    @endforeach
+<table>
+
+<tr>
+
+<th>No</th>
+<th>Barang</th>
+<th>Jumlah</th>
+<th>Total</th>
+<th>Status</th>
+
+</tr>
+
+@foreach($pesanans as $item)
+
+<tr>
+
+<td>{{ $loop->iteration }}</td>
+
+<td>{{ $item->koperasi->nama_barang }}</td>
+
+<td>{{ $item->jumlah }}</td>
+
+<td>Rp {{ number_format($item->total_harga) }}</td>
+
+<td>{{ $item->status }}</td>
+
+</tr>
+
+@endforeach
+
+</table>
 
 </div>
 

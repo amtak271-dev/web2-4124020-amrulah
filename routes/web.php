@@ -430,19 +430,40 @@ Route::post('/upload-foto', function (\Illuminate\Http\Request $request) {
 
 
     /*
-    |--------------------------------------------------------------------------
-    | KOPERASI SANTRI
-    |--------------------------------------------------------------------------
-    */
+|--------------------------------------------------------------------------
+| KOPERASI SANTRI
+|--------------------------------------------------------------------------
+*/
 
-    Route::get('/koperasi-santri', [
-        KoperasiController::class,
-        'koperasiSantri'
-    ]);
+Route::get('/koperasi-santri', [
+    KoperasiController::class,
+    'koperasiSantri'
+]);
 
-    Route::post('/pesanan', [
-        PesananController::class,
-        'store'
-    ])->name('pesanan.store');
+/*
+|--------------------------------------------------------------------------
+| PESANAN KOPERASI
+|--------------------------------------------------------------------------
+*/
+
+Route::post('/pesanan', [
+    PesananController::class,
+    'store'
+])->name('pesanan.store');
+
+Route::get('/admin/pesanan', [
+    PesananController::class,
+    'index'
+])->name('admin.pesanan');
+
+Route::get('/pesanan/{id}/acc', [
+    PesananController::class,
+    'acc'
+])->name('pesanan.acc');
+
+Route::get('/pesanan/{id}/tolak', [
+    PesananController::class,
+    'tolak'
+])->name('pesanan.tolak');
+
 });
-

@@ -12,6 +12,15 @@
 
 <style>
 
+:root{
+    --navy:#0b1b3a;
+    --navy-dark:#071428;
+    --gold:#d4af37;
+    --gold-soft:#f5d76e;
+    --text:#f8fafc;
+}
+
+/* RESET */
 *{
     margin:0;
     padding:0;
@@ -22,7 +31,7 @@
 body{
     min-height:100vh;
     background:
-    linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.65)),
+    linear-gradient(rgba(7,20,40,.85),rgba(11,27,58,.85)),
     url('/images/santri.jpg') center/cover no-repeat;
     display:flex;
     justify-content:center;
@@ -30,6 +39,7 @@ body{
     padding:20px;
 }
 
+/* CONTAINER */
 .container{
     width:1200px;
     max-width:95%;
@@ -39,21 +49,23 @@ body{
     align-items:center;
 }
 
+/* LOGIN BOX */
 .login-box{
-    background:rgba(255,255,255,.08);
+    background:rgba(11,27,58,.55);
     backdrop-filter:blur(20px);
     -webkit-backdrop-filter:blur(20px);
-    border:1px solid rgba(255,255,255,.15);
+    border:1px solid rgba(212,175,55,.25);
     border-radius:30px;
     padding:35px;
-    color:white;
-    box-shadow:0 20px 40px rgba(0,0,0,.35);
+    color:var(--text);
+    box-shadow:0 20px 40px rgba(0,0,0,.4);
 
     display:flex;
     flex-direction:column;
     justify-content:center;
 }
 
+/* LOGO */
 .logo{
     width:100px;
     height:100px;
@@ -65,11 +77,12 @@ body{
     object-fit:cover;
 }
 
+/* TITLE */
 .title{
     text-align:center;
     font-size:38px;
     font-weight:700;
-    color:#22c55e;
+    color:var(--gold);
 }
 
 .desc{
@@ -79,6 +92,7 @@ body{
     margin-bottom:30px;
 }
 
+/* INPUT */
 .input-group{
     position:relative;
     margin-bottom:18px;
@@ -88,7 +102,7 @@ body{
     position:absolute;
     left:16px;
     top:17px;
-    color:#bbf7d0;
+    color:var(--gold);
 }
 
 input,
@@ -97,10 +111,10 @@ select{
     padding:15px 15px 15px 48px;
     border:none;
     border-radius:14px;
-    background:rgba(255,255,255,.12);
+    background:rgba(255,255,255,.08);
     color:white;
     font-size:14px;
-    border:1px solid rgba(255,255,255,.1);
+    border:1px solid rgba(212,175,55,.15);
 }
 
 input::placeholder{
@@ -114,28 +128,30 @@ option{
 input:focus,
 select:focus{
     outline:none;
-    border-color:#22c55e;
-    box-shadow:0 0 15px rgba(34,197,94,.3);
+    border-color:var(--gold);
+    box-shadow:0 0 15px rgba(212,175,55,.35);
 }
 
+/* BUTTON */
 button{
     width:100%;
     padding:15px;
     border:none;
     border-radius:14px;
-    background:linear-gradient(135deg,#22c55e,#15803d);
-    color:white;
+    background:linear-gradient(135deg,var(--gold),#b8941f);
+    color:#0b1b3a;
     font-size:16px;
-    font-weight:600;
+    font-weight:700;
     cursor:pointer;
     transition:.3s;
 }
 
 button:hover{
     transform:translateY(-2px);
-    box-shadow:0 10px 20px rgba(34,197,94,.35);
+    box-shadow:0 10px 25px rgba(212,175,55,.35);
 }
 
+/* FOOTER */
 .footer{
     text-align:center;
     margin-top:20px;
@@ -143,12 +159,13 @@ button:hover{
     font-size:13px;
 }
 
+/* RIGHT SIDE */
 .right{
     color:white;
 }
 
 .right h4{
-    color:#86efac;
+    color:var(--gold-soft);
     font-size:18px;
     margin-bottom:10px;
 }
@@ -167,6 +184,7 @@ button:hover{
     font-size:16px;
 }
 
+/* FEATURE */
 .feature{
     display:flex;
     gap:15px;
@@ -177,8 +195,8 @@ button:hover{
     width:55px;
     height:55px;
     border-radius:50%;
-    background:rgba(34,197,94,.15);
-    color:#22c55e;
+    background:rgba(212,175,55,.15);
+    color:var(--gold);
     display:flex;
     align-items:center;
     justify-content:center;
@@ -190,17 +208,18 @@ button:hover{
     margin-bottom:5px;
 }
 
+/* QUOTE */
 .quote{
     margin-top:30px;
     padding:18px;
-    border-left:4px solid #22c55e;
+    border-left:4px solid var(--gold);
     background:rgba(255,255,255,.08);
     border-radius:12px;
     font-style:italic;
 }
 
+/* RESPONSIVE */
 @media(max-width:900px){
-
     .container{
         grid-template-columns:1fr;
     }
@@ -208,24 +227,23 @@ button:hover{
     .right{
         display:none;
     }
-
 }
 
 </style>
 </head>
+
 <body>
 
 <div class="container">
 
+    <!-- LOGIN -->
     <div class="login-box">
 
         <img src="/images/logo.jpg" class="logo">
 
         <h2 class="title">SantriPay</h2>
 
-        <p class="desc">
-            Sistem Tabungan Santri Berbasis Digital
-        </p>
+        <p class="desc">Sistem Tabungan Santri Berbasis Digital</p>
 
         <form method="POST" action="/login">
             @csrf
@@ -241,20 +259,12 @@ button:hover{
 
             <div class="input-group">
                 <i class="fa-solid fa-envelope"></i>
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="Masukkan Email"
-                    required>
+                <input type="email" name="email" placeholder="Masukkan Email" required>
             </div>
 
             <div class="input-group">
                 <i class="fa-solid fa-lock"></i>
-                <input
-                    type="password"
-                    name="password"
-                    placeholder="Masukkan Password"
-                    required>
+                <input type="password" name="password" placeholder="Masukkan Password" required>
             </div>
 
             <button type="submit">
@@ -270,6 +280,7 @@ button:hover{
 
     </div>
 
+    <!-- RIGHT CONTENT -->
     <div class="right">
 
         <h4>Selamat Datang di</h4>
@@ -281,13 +292,11 @@ button:hover{
 
         <p>
             SantriPay membantu pengelolaan tabungan santri menjadi lebih aman,
-            cepat, transparan, dan terintegrasi. Seluruh transaksi setoran,
-            penarikan, dan laporan keuangan dapat dilakukan dalam satu sistem.
+            cepat, transparan, dan terintegrasi.
         </p>
 
         <p>
-            Dengan teknologi digital, pengurus pondok pesantren dan wali santri
-            dapat memantau perkembangan tabungan kapan saja dan di mana saja.
+            Pengurus dan wali santri dapat memantau tabungan kapan saja secara real-time.
         </p>
 
         <div class="feature">
@@ -296,7 +305,7 @@ button:hover{
             </div>
             <div>
                 <h3>Aman</h3>
-                <p>Data transaksi tersimpan secara otomatis dan terstruktur.</p>
+                <p>Data transaksi tersimpan otomatis dan terstruktur.</p>
             </div>
         </div>
 
@@ -306,7 +315,7 @@ button:hover{
             </div>
             <div>
                 <h3>Transparan</h3>
-                <p>Riwayat tabungan dapat dipantau dengan mudah setiap saat.</p>
+                <p>Riwayat tabungan dapat dipantau kapan saja.</p>
             </div>
         </div>
 
@@ -316,7 +325,7 @@ button:hover{
             </div>
             <div>
                 <h3>Mudah Digunakan</h3>
-                <p>Tampilan sederhana dan modern untuk semua pengguna.</p>
+                <p>Tampilan modern dan sederhana.</p>
             </div>
         </div>
 
